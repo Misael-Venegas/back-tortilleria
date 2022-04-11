@@ -1,0 +1,4 @@
+node_modules
+
+#paquetes
+package-lock.json
