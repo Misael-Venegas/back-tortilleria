@@ -1,8 +1,3 @@
-const {
-  gql
-} = require('apollo-server-express')
-
-const typeDefs = gql`
 
 type Query {
  getUsuarios: [Usuarios]
@@ -36,6 +31,3 @@ input usuarioInput {
     tipo: Int
 }
 
-`
-
-module.exports = typeDefs

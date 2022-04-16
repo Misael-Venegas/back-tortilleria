@@ -1,8 +1,24 @@
 const express = require('express');
 const { ApolloServer, gql } = require('apollo-server-express')
 const models = require('./sequelize/models/index');
-import resolvers from './graphql/resolvers/resolvers'
-import typeDefs from './graphql/typeDefs/typeDefs'
+
+const path = require("path");
+import { mergeResolvers, mergeTypeDefs, makeExecutableSchema, loadFilesSync } from 'graphql-tools';
+
+
+const typesArr = loadFilesSync(path.join(__dirname, "./graphql/typeDefs/"), {
+    extensions: ['graphql', 'gql']
+});
+const resolversArr = loadFilesSync(path.join(__dirname, "./graphql/resolvers"), {
+    extensions: ['js']
+});
+
+const schema = makeExecutableSchema({
+    typeDefs: mergeTypeDefs(typesArr),
+    resolvers: mergeResolvers(resolversArr),
+});
+
+
 //Conexion con la BD
 models.sequelize.authenticate().then(() => {
     console.log("Conectado a la BD")
@@ -15,8 +31,7 @@ let server = null;
 
 async function startServer() {
     server = new ApolloServer({
-        typeDefs,
-        resolvers,
+        schema,
         context: {
             models
         }
