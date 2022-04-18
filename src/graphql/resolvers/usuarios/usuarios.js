@@ -31,9 +31,9 @@ const resolvers = {
 
     Mutation: {
         async createusuario(root, { input }, { models }) {
-            const { nombre, apellidos, telefono, email, password, tipo } = input
-            console.log(nombre, apellidos, telefono, email, password, tipo)
-            return await models.usuarios.create({ nombre, apellidos, telefono, email, password, tipo })
+            const { nombre, apellidoP, apellidoM, telefono, email, password, tipo } = input
+            //console.log(nombre, apellidos, telefono, email, password, tipo)
+            return await models.usuarios.create({ nombre,apellidoP, apellidoM, telefono, email, password, tipo })
         }
     }
 }

@@ -10,10 +10,11 @@ type Mutation {
   createusuario(input: usuarioInput!): Usuarios
 }
 
-type Usuarios{
+type Usuarios{  
  id: Int
  nombre: String
- apellidos: String
+ apellidoP: String
+ apellidoM: String
  telefono: String
  email: String
  password: String
@@ -24,7 +25,8 @@ type Usuarios{
 
 input usuarioInput {
     nombre: String
-    apellidos: String
+    apellidoP: String
+    apellidoM: String
     telefono: String
     email: String
     password: String
