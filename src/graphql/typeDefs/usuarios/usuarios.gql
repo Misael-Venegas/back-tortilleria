@@ -3,7 +3,7 @@ type Query {
  getUsuarios: [Usuarios]
  getUsuario(id: Int!): Usuarios
  holaMundo: String
- login(correo: String!, contrasenia: String!, key: Float!): Usuarios
+ login(correo: String!, contrasenia: String!, key: Float!): Token
 }
 
 type Mutation {
@@ -33,3 +33,6 @@ input usuarioInput {
     tipo: Int
 }
 
+type Token {
+  token: String
+}
