@@ -1,5 +1,3 @@
-const bcryptjs = require("bcryptjs");
-const { crearToken } = require("../../../helpers/auth")
 const resolvers = {
     Query: {
         async getUsuarios(root, args, { models }) {
@@ -14,62 +12,19 @@ const resolvers = {
         async login(root, args, { models }) {
             try {
                 const { correo, contrasenia } = args;
-
                 const consulta = await models.usuarios.findAll({
                     where: {
-                        email: correo
+                        email: correo,
+                        password: contrasenia
                     }
                 })
-
                 if (consulta.length == 0) {
-                    throw new Error("El correo electronico no se encuentra registrado")
+                    throw new Error("Usuario y/o contraseña incorectos")
                 } else {
-
-                    const validarContrasenhia = await bcryptjs.compare(contrasenia, consulta[0].password);
-
-                    if (!validarContrasenhia) {
-                        throw new Error("La contrasenhia es incorrecta")
-                    }
-
-                    return {
-                        token: crearToken(consulta[0])
-                    }
+                    return consulta[0]
                 }
             } catch (error) {
-                console.log(error)
-                throw new Error(error.message)
-            }
-        },
-        async recuperarContranhia(root, args, { models }) {
-            const { correo } = args;
-            try {
-                const consulta = await models.usuarios.findAll(
-                    {
-                        where: {
-                            email: correo
-                        }
-                    }
-                )
-
-                if (consulta.length == 0) {
-                    throw new Error("El correo electrónico no existe")
-                }
-
-                const passwordNuevo = Math.random().toString(36).slice(-8);
-
-                const encriptPass = await bcryptjs.hash(passwordNuevo, 8);
-
-                console.log(passwordNuevo)
-                await models.usuarios.update({ 'password': encriptPass }, {
-                    where: {
-                        email: correo
-                    }
-                }
-                )
-                return true;
-
-            } catch (error) {
-                throw new Error(error.message)
+                throw new Error("Error al intentar obtener datos de la bd")
             }
         }
     },
@@ -78,22 +33,7 @@ const resolvers = {
         async createusuario(root, { input }, { models }) {
             const { nombre, apellidoP, apellidoM, telefono, email, password, tipo } = input
             //console.log(nombre, apellidos, telefono, email, password, tipo)
-            try {
-                const existeCorreo = await models.usuarios.findAll({
-                    where: {
-                        email
-                    }
-                })
-
-                if (existeCorreo.length > 0) {
-
-                    throw new Error("El correo electronico ya esta vinculado a otra cuenta");
-                }
-                const encriptar = await bcryptjs.hash(password, 8);
-                return await models.usuarios.create({ nombre, apellidoP, apellidoM, telefono, email, password: encriptar, tipo })
-            } catch (error) {
-
-            }
+            return await models.usuarios.create({ nombre,apellidoP, apellidoM, telefono, email, password, tipo })
         }
     }
 }
