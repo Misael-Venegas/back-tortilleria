@@ -37,7 +37,39 @@ const resolvers = {
                 }
             } catch (error) {
                 console.log(error)
-                throw new Error("Error al intentar obtener datos de la bd")
+                throw new Error(error.message)
+            }
+        },
+        async recuperarContranhia(root, args, { models }) {
+            const { correo } = args;
+            try {
+                const consulta = await models.usuarios.findAll(
+                    {
+                        where: {
+                            email: correo
+                        }
+                    }
+                )
+
+                if (consulta.length == 0) {
+                    throw new Error("El correo electrónico no existe")
+                }
+
+                const passwordNuevo = Math.random().toString(36).slice(-8);
+
+                const encriptPass = await bcryptjs.hash(passwordNuevo, 8);
+
+                console.log(passwordNuevo)
+                await models.usuarios.update({ 'password': encriptPass }, {
+                    where: {
+                        email: correo
+                    }
+                }
+                )
+                return true;
+
+            } catch (error) {
+                throw new Error(error.message)
             }
         }
     },
@@ -54,7 +86,7 @@ const resolvers = {
                 })
 
                 if (existeCorreo.length > 0) {
-                    console.log("Si hay")
+
                     throw new Error("El correo electronico ya esta vinculado a otra cuenta");
                 }
                 const encriptar = await bcryptjs.hash(password, 8);
