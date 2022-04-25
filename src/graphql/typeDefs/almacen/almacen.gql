@@ -1,0 +1,36 @@
+type Query {
+  getAlmacen: [Almacen]
+  getAlmacenProducto(id: Int!): Almacen
+}
+
+type Mutation {
+  createAlmacenProducto(input: almacenInput!): Almacen
+  deleteAlmacenProducto(id_Producto_Almacen: Int!): Almacen
+  updateAlmacenProducto(input: almacenUpdate!): Almacen
+}
+
+type Almacen {
+  id_Producto_Almacen: Int
+  nombre: String
+  categoria: String
+  unidad_Medida: String
+  status: Int
+  stock: Float
+}
+
+input almacenInput {
+  nombre: String
+  categoria: String
+  unidad_Medida: String
+  status: Int
+  stock: Float
+}
+
+input almacenUpdate {
+  id_Producto_Almacen: Int
+  nombre: String
+  categoria: String
+  unidad_Medida: String
+  status: Int
+  stock: Float
+}
