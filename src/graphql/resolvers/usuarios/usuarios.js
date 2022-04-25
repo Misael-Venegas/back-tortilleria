@@ -86,13 +86,24 @@ const resolvers = {
                 })
 
                 if (existeCorreo.length > 0) {
-
                     throw new Error("El correo electronico ya esta vinculado a otra cuenta");
                 }
                 const encriptar = await bcryptjs.hash(password, 8);
                 return await models.usuarios.create({ nombre, apellidoP, apellidoM, telefono, email, password: encriptar, tipo })
             } catch (error) {
-
+                throw new Error(error)
+            }
+        },
+        async eliminarUsuario(root, { id }, { models }) {
+            try {
+                await models.usuarios.destroy({
+                    where: {
+                        id
+                    }
+                })
+                return true
+            } catch (error) {
+                throw new Error("Error al intentar eliminar al usuario de la bd")
             }
         }
     }
