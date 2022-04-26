@@ -105,6 +105,44 @@ const resolvers = {
             } catch (error) {
                 throw new Error("Error al intentar eliminar al usuario de la bd")
             }
+        },
+        async editarUsuario(_, { input }, { models }) {
+            const { id, nombre, apellidoP, apellidoM, telefono, email, password, tipo } = input
+
+            try {
+                if (password === "") {
+                    await models.usuarios.update({
+                        nombre,
+                        apellidoP,
+                        apellidoM,
+                        telefono,
+                        email,
+                        tipo
+                    }, {
+                        where: {
+                            id
+                        }
+                    })
+                } else {
+                    const encriptar = await bcryptjs.hash(password, 8);
+                    await models.usuarios.update({
+                        nombre,
+                        apellidoP,
+                        apellidoM,
+                        telefono,
+                        email,
+                        tipo,
+                        password: encriptar
+                    }, {
+                        where: {
+                            id
+                        }
+                    })
+                }
+                return true
+            } catch (error) {
+                throw new Error(error.message)
+            }
         }
     }
 }

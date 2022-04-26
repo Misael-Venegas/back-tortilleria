@@ -49,4 +49,4 @@ const app = express();
 
 app.listen({
     port: 4000
-}, () => console.log("http://localhost:4000" + server.graphqlPath))
+}, () => console.log("http://localhost:4000/graphql"))
