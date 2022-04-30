@@ -1,0 +1,22 @@
+input inputProductos {
+  nombre: String
+  precioVenta: Float
+  unidad: String
+  id_producto_almacen: Int
+}
+
+type productos {
+   id_producto: Int
+   nombre: String
+   precioVenta: Float
+   unidad: String
+   id_producto_almacen: Int
+ }
+
+ input editarProuctosInput {
+   id_producto: Int
+   nombre: String
+   precioVenta: Float
+   unidad: String
+   id_producto_almacen: Int
+ }
