@@ -1,0 +1,13 @@
+input ventasInput {
+  key:Float
+  productos: [arrayVentas]
+}
+
+input arrayVentas {
+  id_usuario: Int
+  total: Float
+  fecha_venta: String
+  hora_venta: String
+  id_producto: Int
+  cantidad: Float
+}

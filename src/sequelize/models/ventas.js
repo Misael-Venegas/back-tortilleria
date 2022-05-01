@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER
             },
             cantidad: {
-                type: DataTypes.INTEGER
+                type: DataTypes.DOUBLE
             }
         }, {}
     );
