@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DOUBLE(10, 2),
       },
       fecha: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE(6),
       },
       id_usuario: {
         type: DataTypes.INTEGER,

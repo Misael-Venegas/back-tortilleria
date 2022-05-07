@@ -1,14 +1,19 @@
+type Query {
+  getGasto: [Gasto]
+}
 
 type Mutation {
   createGasto(input: gastoInput!): Gasto
 }
+
+scalar Date
 
 type Gasto {
   id_operacion: Int
   id_producto: Int
   cantidad: Float
   precio: Float
-  fecha: String
+  fecha: Date
   id_usuario: Int
 }
 
@@ -16,6 +21,6 @@ input gastoInput {
   id_producto: Int
   cantidad: Float
   precio: Float
-  fecha: String
+  fecha: Date
   id_usuario: Int
 }

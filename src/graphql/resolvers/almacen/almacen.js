@@ -46,6 +46,15 @@ const resolvers = {
         { where: { id_Producto_Almacen: id_Producto_Almacen } }
       );
     },
+    async updateAlmacenStock(root, { input }, { models }) {
+      const { id_Producto_Almacen, stock } = input;
+      return await models.almacen.update(
+        {
+          stock,
+        },
+        { where: { id_Producto_Almacen: id_Producto_Almacen } }
+      );
+    },
   },
 };
 

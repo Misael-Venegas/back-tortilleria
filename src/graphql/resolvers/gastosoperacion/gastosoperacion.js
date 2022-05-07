@@ -1,4 +1,10 @@
 const resolvers = {
+  Query: {
+    async getGasto(root, args, { models }) {
+      return await models.gastosoperacion.findAll();
+    },
+  },
+
   Mutation: {
     async createGasto(root, { input }, { models }) {
       const { id_producto, cantidad, precio, fecha, id_usuario } = input;
