@@ -50,8 +50,9 @@ const resolvers = {
                         }
                     }
                 )
-
-                if (consulta.length == 0) {
+                console.log(consulta.length)
+                if (consulta.length <= 0) {
+                    console.log("entré")
                     throw new Error("El correo electrónico no existe")
                 }
 
@@ -69,6 +70,7 @@ const resolvers = {
                 return true;
 
             } catch (error) {
+                console.log(error.message)
                 throw new Error(error.message)
             }
         }
