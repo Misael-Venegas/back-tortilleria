@@ -1,0 +1,27 @@
+type Query {
+  getMermas: [Merma]
+  getMerma(id: Int!): Merma
+}
+
+type Mutation {
+  createMerma(input: mermaInput!): Merma
+  deleteMerma(id_merma: Int!): Merma
+}
+scalar Date
+
+type Merma {
+  id_merma: Int
+  tipo: String
+  cantidad: Float
+  descripcion: String
+  id_usuario: Int
+  fecha: Date
+}
+
+input mermaInput {
+  tipo: String
+  cantidad: Float
+  descripcion: String
+  id_usuario: Int
+  fecha: Date
+}

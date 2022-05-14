@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
       },
       fecha: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATE(6),
       },
     },
     {}
