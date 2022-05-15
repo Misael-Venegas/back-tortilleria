@@ -16,6 +16,13 @@ const resolvers = {
         id_usuario,
       });
     },
+    async deleteGasto(root, args, { models }) {
+      return await models.gastosoperacion.destroy({
+        where: {
+          id_operacion: args.id_operacion,
+        },
+      });
+    },
   },
 };
 

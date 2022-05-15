@@ -4,6 +4,7 @@ type Query {
 
 type Mutation {
   createGasto(input: gastoInput!): Gasto
+  deleteGasto(id_operacion: Int!): Gasto
 }
 
 scalar Date
