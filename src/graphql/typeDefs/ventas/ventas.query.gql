@@ -1,0 +1,4 @@
+type Query {
+  getVentas(fecha: String!): [Ventas]
+  getVentasAll: [Ventas]
+}

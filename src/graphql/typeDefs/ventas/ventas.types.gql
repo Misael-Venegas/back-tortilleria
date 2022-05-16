@@ -1,9 +1,19 @@
 input ventasInput {
-  key:Float
+  key: Float
   productos: [arrayVentas]
 }
 
 input arrayVentas {
+  id_usuario: Int
+  total: Float
+  fecha_venta: String
+  hora_venta: String
+  id_producto: Int
+  cantidad: Float
+}
+
+type Ventas {
+  id: Int
   id_usuario: Int
   total: Float
   fecha_venta: String
