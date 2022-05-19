@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-        const Usuarios = sequelize.define('Usuarios', {
-            id: {
+        const Empleado = sequelize.define('Empleado', {
+            id_empleado: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
@@ -26,9 +26,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            tipo: {
+            id_cargo: {
                 type: DataTypes.INTEGER,
             }
         }, {});
-        return Usuarios
+        return Empleado
 }

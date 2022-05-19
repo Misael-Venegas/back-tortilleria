@@ -9,15 +9,6 @@ module.exports = (sequelize, DataTypes) => {
             nombre: {
                 type: DataTypes.STRING,
                 allowNull: false
-            },
-            precioVenta: {
-                type: DataTypes.DOUBLE
-            },
-            unidad: {
-                type: DataTypes.STRING
-            },
-            id_producto_almacen: {
-                type: DataTypes.INTEGER
             }
         }
         , {});
