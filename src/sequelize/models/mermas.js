@@ -7,22 +7,19 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      tipo: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       cantidad: {
-        type: DataTypes.DOUBLE(10, 2),
+        type: DataTypes.FLOAT
       },
-      descripcion: {
-        type: DataTypes.STRING,
+      id_cortes: {
+        type: DataTypes.INTEGER
       },
-      id_usuario: {
-        type: DataTypes.INTEGER,
+      id_tipo_merma: {
+        type: DataTypes.INTEGER
       },
-      fecha: {
-        type: DataTypes.DATE(6),
-      },
+      id_sucursal: {
+        type: DataTypes.INTEGER
+      }
+
     },
     {}
   );

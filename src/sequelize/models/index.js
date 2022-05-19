@@ -14,7 +14,11 @@ const models = {
     gastosoperacion: sequelize.import('./gastosoperacion'),
     mermas: sequelize.import('./mermas'),
     cargos: sequelize.import('./cargo'),
-    ventas_productos: sequelize.import('./ventas_productos')
+    ventas_productos: sequelize.import('./ventas_productos'),
+    sucursal: sequelize.import('./sucursal'),
+    cortes: sequelize.import('./cortes'),
+    tipo_merma: sequelize.import('./tipo_merma'),
+    proveedor: sequelize.import('./proveedor')
 }
 
 models.sequelize = sequelize;
