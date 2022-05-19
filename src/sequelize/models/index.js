@@ -12,7 +12,13 @@ const models = {
     ventas: sequelize.import('./ventas'),
     productos: sequelize.import('./productos'),
     gastosoperacion: sequelize.import('./gastosoperacion'),
-    mermas: sequelize.import('./mermas')
+    mermas: sequelize.import('./mermas'),
+    entradas: sequelize.import('./entradas'),
+    entradasalmacen: sequelize.import('./entradasalmacen'),
+    insumos: sequelize.import('./insumos'),
+    salidas: sequelize.import('./salidas'),
+    salidasalmacen: sequelize.import('./salidasalmacen'),
+    tipoalmacen: sequelize.import('./tipoalmacen')
 }
 
 models.sequelize = sequelize;
