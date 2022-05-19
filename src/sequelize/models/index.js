@@ -7,12 +7,14 @@ const sequelize = new Sequelize('tortilleria', 'root', '', {
 })
 
 const models = {
-    usuarios: sequelize.import('./usuarios'),
+    empleados: sequelize.import('./usuarios'),
     almacen: sequelize.import('./almacen'),
     ventas: sequelize.import('./ventas'),
     productos: sequelize.import('./productos'),
     gastosoperacion: sequelize.import('./gastosoperacion'),
-    mermas: sequelize.import('./mermas')
+    mermas: sequelize.import('./mermas'),
+    cargos: sequelize.import('./cargo'),
+    ventas_productos: sequelize.import('./ventas_productos')
 }
 
 models.sequelize = sequelize;
