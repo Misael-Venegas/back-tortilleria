@@ -15,7 +15,7 @@ const resolvers = {
             try {
                 const { correo, contrasenia } = args;
 
-                const consulta = await models.usuarios.findAll({
+                const consulta = await models.empleados.findAll({
                     where: {
                         email: correo
                     }
