@@ -1,24 +1,17 @@
 module.exports = (sequelize, DataTypes) => {
     const Almacen = sequelize.define('Almacen', {
-        id_Producto_Almacen: {
+        id_almacen: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
-        },
-        nombre: {
-            type: DataTypes.STRING,
-        },
-        categoria: {
-            type: DataTypes.STRING,
-        },
-        unidad_Medida: {
-            type: DataTypes.STRING,
-        },
-        status: {
-            type: DataTypes.INTEGER,
-        },
-        stock: {
-            type: DataTypes.DOUBLE(10,2),
+        }, cantidad: {
+            type: DataTypes.INTEGER
+        }, id_insumus: {
+            type: DataTypes.INTEGER
+        }, id_tipo_almacen: {
+            type: DataTypes.INTEGER
+        }, id_sucursal: {
+            type: DataTypes.INTEGER
         }
     }, {});
     return Almacen
