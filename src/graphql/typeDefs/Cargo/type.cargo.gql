@@ -1,0 +1,5 @@
+
+type cargos {
+  id_cargo: Int
+  nombre_cargo: String
+}
