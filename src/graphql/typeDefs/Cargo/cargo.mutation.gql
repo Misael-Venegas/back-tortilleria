@@ -1,3 +1,4 @@
 type Mutation {
     createCargo(nombreCargo: String!, key: Float!): Boolean
+    deleteCargo(id_cargo: Int!, key: Float!): Boolean
 }
