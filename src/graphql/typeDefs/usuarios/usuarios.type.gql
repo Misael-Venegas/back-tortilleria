@@ -1,23 +1,25 @@
 type Usuarios{  
- id: Int
- nombre: String
- apellidoP: String
- apellidoM: String
- telefono: String
- email: String
- password: String
- tipo: Int
+  id_empleado: Int
+  nombre: String
+  apellidoP: String
+  apellidoM: String
+  telefono: String
+  email: String
+  password: String
+  id_cargo: Int
+  direccion: String
 }
 
 input editarUsuarioInput {
- id: Int
+ id_empleado: Int
  nombre: String
  apellidoP: String
  apellidoM: String
  telefono: String
  email: String
  password: String
- tipo: Int
+ id_cargo: Int
+ direccion: String
 }
 
 input usuarioInput {
@@ -27,7 +29,7 @@ input usuarioInput {
     telefono: String
     email: String
     password: String
-    cargo: Int
+    id_cargo: Int
     direccion: String
 }
 

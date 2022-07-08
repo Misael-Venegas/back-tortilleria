@@ -3,10 +3,10 @@ const { crearToken } = require("../../../helpers/auth")
 const resolvers = {
     Query: {
         async getUsuarios(root, args, { models }) {
-            return await models.usuarios.findAll();
+            return await models.empleados.findAll();
         },
         async getUsuario(root, args, { models }) {
-            return await models.usuarios.findByPk(args.id);
+            return await models.empleados.findByPk(args.id);
         },
         async holaMundo() {
             return await "hola mundo"
