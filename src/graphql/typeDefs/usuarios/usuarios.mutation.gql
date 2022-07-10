@@ -1,5 +1,5 @@
 type Mutation {
   createusuario(input: usuarioInput!, key: Float!): Boolean
-  eliminarUsuario(id: Int!): Boolean
+  eliminarUsuario(id_empleado: Int!): Boolean
   editarUsuario(input: editarUsuarioInput!): Boolean
 }

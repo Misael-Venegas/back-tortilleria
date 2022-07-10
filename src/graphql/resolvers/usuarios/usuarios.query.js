@@ -3,7 +3,8 @@ const { crearToken } = require("../../../helpers/auth")
 const resolvers = {
     Query: {
         async getUsuarios(root, args, { models }) {
-            return await models.empleados.findAll();
+           const [results, metadata] =  await models.sequelize.query("SELECT emp.id_empleado ,emp.nombre, emp.apellidoP, emp.apellidoM,emp.telefono, emp.email, emp.direccion, c.id_cargo, c.nombre_cargo FROM empleados emp INNER JOIN cargos c ON c.id_cargo = emp.id_cargo");
+           return results
         },
         async getUsuario(root, args, { models }) {
             return await models.empleados.findByPk(args.id);

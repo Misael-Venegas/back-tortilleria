@@ -8,29 +8,29 @@ type Usuarios{
   password: String
   id_cargo: Int
   direccion: String
+  nombre_cargo: String
 }
 
 input editarUsuarioInput {
- id_empleado: Int
- nombre: String
- apellidoP: String
- apellidoM: String
- telefono: String
- email: String
- password: String
- id_cargo: Int
- direccion: String
+  id_empleado: Int
+  nombre: String
+  apellidoP: String
+  apellidoM: String
+  telefono: String
+  email: String
+  id_cargo: Int
+  direccion: String
 }
 
 input usuarioInput {
-    nombre: String
-    apellidoP: String
-    apellidoM: String
-    telefono: String
-    email: String
-    password: String
-    id_cargo: Int
-    direccion: String
+      nombre: String
+      apellidoP: String
+      apellidoM: String
+      telefono: String
+      email: String
+      password: String
+      id_cargo: Int
+      direccion: String
 }
 
 type Token {
