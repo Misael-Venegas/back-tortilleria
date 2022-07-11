@@ -1,6 +1,7 @@
 const resolvers = {
   Mutation: {
     async createProveedor(root, { input }, { models }) {
+      console.log(input)
       const { nombre, correo, telefono } = input;
       try {
         await models.proveedor.create({ nombre, correo, telefono });
@@ -12,4 +13,4 @@ const resolvers = {
   },
 };
 
-module.exports.resolvers;
+module.exports = resolvers 
