@@ -1,5 +1,4 @@
 type Mutation {
-  agregarProducto(input: inputProductos!): Boolean
+  agregarProducto(nombreProducto: String!, key: Float!): Boolean
   eliminarProducto(id_producto: Int!): Boolean
-  editarProducto(input: editarProuctosInput!): Boolean
 }
