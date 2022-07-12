@@ -53,7 +53,7 @@ async function startServer() {
           ? authorizationHeader.split(" ")[1]
           : authorizationHeader;
 
-      if (token) {
+      
         try {
           // console.log(token)
           const usuario = jwt.verify(token, 'QlkshioASLKÑJDaa234#4klhjas');
@@ -66,9 +66,7 @@ async function startServer() {
           console.log(err)
           throw new Error("Token de autenticacion invalido");
         }
-      } else {
-        throw new Error("Se requiere token de autenticacion");
-      }
+    
     },
   })
 
