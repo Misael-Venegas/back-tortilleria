@@ -1,0 +1,5 @@
+type Mutation {
+    createSucursal(input: inputSucursal!): Boolean
+    deleteSucursal(id_sucursal: Int!): Boolean
+    editSucursal(input: inputSucursal!, id_sucursal: Int!): Boolean
+}

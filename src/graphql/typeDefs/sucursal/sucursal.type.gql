@@ -1,0 +1,13 @@
+input inputSucursal {
+    nombre: String
+    telefono: String
+    direccion: String
+}
+
+
+type sucursales {
+    id_sucursal: Int
+    nombre: String
+    telefono: String
+    direccion: String
+}
