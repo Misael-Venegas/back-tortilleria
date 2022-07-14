@@ -1,0 +1,20 @@
+input proveedorInput{
+    nombre: String
+    correo: String 
+    telefono: String
+}
+
+input proveedorUpdate{
+    id_proveedor: Int
+    nombre: String
+    correo: String 
+    telefono: String
+}
+
+
+type Proveedor{
+    id_proveedor: Int
+    nombre: String
+    correo: String
+    telefono: String
+}

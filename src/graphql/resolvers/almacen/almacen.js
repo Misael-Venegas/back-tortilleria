@@ -3,6 +3,9 @@ const resolvers = {
     async getAlmacen(root, args, { models }) {
       return await models.almacen.findAll();
     },
+    async getAlmacenTipo(root, args, { models }) {
+      return await models.tipoalmacen.findAll();
+    },
     async getAlmacenProducto(root, args, { models }) {
       return await models.almacen.findByPk(args.id);
     },
@@ -18,6 +21,22 @@ const resolvers = {
         status,
         stock,
       });
+    },
+    async createAlmacenTipo(root, { nombre }, { models }) {
+      await models.tipoalmacen.create({ nombre})
+      return true;
+    },
+    async deleteAlmacenTipo(_, { id_tipo_almacen }, { models }) {
+      try {
+          await models.tipoalmacen.destroy({
+              where: {
+                id_tipo_almacen
+              }
+          })
+          return true
+      } catch (error) {
+          throw new Error(error.message)
+      }
     },
     async deleteAlmacenProducto(root, args, { models }) {
       return await models.almacen.destroy({

@@ -1,5 +1,0 @@
-input proveedorInput{
-    nombre: String
-    correo: String 
-    telefono: String
-}

@@ -1,11 +1,14 @@
 type Query {
   getAlmacen: [Almacen]
+  getAlmacenTipo: [AlmacenTipo]
   getAlmacenProducto(id: Int!): Almacen
 }
 
 type Mutation {
   createAlmacenProducto(input: almacenInput!): Almacen
+  createAlmacenTipo(nombre: String!): Boolean
   deleteAlmacenProducto(id_Producto_Almacen: Int!): Almacen
+  deleteAlmacenTipo(id_tipo_almacen: Int!): Boolean
   updateAlmacenProducto(input: almacenUpdate!): Almacen
   updateAlmacenStock(input: almacenUpdateStock!): Almacen
 }
@@ -17,6 +20,11 @@ type Almacen {
   unidad_Medida: String
   status: Int
   stock: Float
+}
+
+type AlmacenTipo {
+  id_tipo_almacen: Int
+  nombre: String
 }
 
 input almacenInput {
