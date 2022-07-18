@@ -4,6 +4,6 @@ type Query {
  getUsuario(id: Int!): Usuarios
  holaMundo: String
  login(correo: String!, contrasenia: String!, key: Float!): Token
- recuperarContranhia(correo: String!, key: Float!): Boolean
+ 
 }
 

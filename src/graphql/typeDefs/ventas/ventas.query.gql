@@ -1,4 +1,4 @@
 type Query {
-  getVentas(fecha: String!): [Ventas]
-  getVentasAll: [Ventas]
+ generarCorteDeCaja( fechaCorte: String! ): [Ventas]
+ #generarCorteDeCaja( fechaCorte: String! ): Boolean
 }

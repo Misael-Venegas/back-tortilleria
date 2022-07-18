@@ -39,7 +39,7 @@ async function startServer() {
     context: ({ req }) => {
 
       // Éstos serían alcanzables sin necesidad de que inicie sesión...
-      if (req.body.query && (req.body.query.match("login") || req.body.query.match("recuperarContranhia"))) {
+      if (req.body.query && (req.body.query.match("login") || req.body.query.match("cambiarContrasenhia"))) {
         return {
           models,
         };
@@ -57,7 +57,7 @@ async function startServer() {
         try {
           // console.log(token)
           const usuario = jwt.verify(token, 'QlkshioASLKÑJDaa234#4klhjas');
-          //console.log(usuario)
+       
           return {
             models,
             usuario,
