@@ -54,11 +54,38 @@ const resolvers = {
             } catch (error) {
                 throw new Error("Error al intentar editar los campos del usuario " + nombre)
             }
+
+        },
+        async cambiarContrasenhia(_, { email, contrasenhia }, { models }) {
             try {
+                const obtenerCorreo = await models.empleados.findAll({
+                    where: {
+                        email
+                    }
+                })
+
+                if (obtenerCorreo.length <= 0) {
+                    throw new Error("El correo electrónico no se encuentra registrado")
+                }
+
+                const encriptar = await bcryptjs.hash(contrasenhia, 8);
+                
+
+                await models.empleados.update(
+                    {
+                        password: encriptar
+                    }, {
+                    where: {
+                        id_empleado: obtenerCorreo[0].id_empleado
+                    }
+                }
+                )
+
                 return true
             } catch (error) {
                 throw new Error(error.message)
             }
+
         }
     }
 }

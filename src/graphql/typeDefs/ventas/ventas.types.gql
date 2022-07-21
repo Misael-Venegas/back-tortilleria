@@ -4,20 +4,17 @@ input ventasInput {
 }
 
 input arrayVentas {
-  id_usuario: Int
-  total: Float
-  fecha_venta: String
-  hora_venta: String
+  id_sucursal: Int
   id_producto: Int
-  cantidad: Float
+  precio: Float
+  cantidad: Int
 }
 
 type Ventas {
-  id: Int
-  id_usuario: Int
+  id_ventas_productos: Int
+  cantidad: Int
   total: Float
-  fecha_venta: String
-  hora_venta: String
-  id_producto: Int
-  cantidad: Float
+  nombre_producto: String 
+  nombre_sucursal: String
+  empleado: String
 }

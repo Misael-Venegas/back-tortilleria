@@ -3,8 +3,8 @@ const { crearToken } = require("../../../helpers/auth")
 const resolvers = {
     Query: {
         async getUsuarios(root, args, { models }) {
-           const [results, metadata] =  await models.sequelize.query("SELECT emp.id_empleado ,emp.nombre, emp.apellidoP, emp.apellidoM,emp.telefono, emp.email, emp.direccion, c.id_cargo, c.nombre_cargo FROM empleados emp INNER JOIN cargos c ON c.id_cargo = emp.id_cargo");
-           return results
+            const [results, metadata] = await models.sequelize.query("SELECT emp.id_empleado ,emp.nombre, emp.apellidoP, emp.apellidoM,emp.telefono, emp.email, emp.direccion, c.id_cargo, c.nombre_cargo FROM empleados emp INNER JOIN cargos c ON c.id_cargo = emp.id_cargo");
+            return results
         },
         async getUsuario(root, args, { models }) {
             return await models.empleados.findByPk(args.id);
@@ -38,40 +38,6 @@ const resolvers = {
                 }
             } catch (error) {
                 console.log(error)
-                throw new Error(error.message)
-            }
-        },
-        async recuperarContranhia(root, args, { models }) {
-            const { correo } = args;
-            try {
-                const consulta = await models.usuarios.findAll(
-                    {
-                        where: {
-                            email: correo
-                        }
-                    }
-                )
-                console.log(consulta.length)
-                if (consulta.length <= 0) {
-                    console.log("entré")
-                    throw new Error("El correo electrónico no existe")
-                }
-
-                const passwordNuevo = Math.random().toString(36).slice(-8);
-
-                const encriptPass = await bcryptjs.hash(passwordNuevo, 8);
-
-                console.log(passwordNuevo)
-                await models.usuarios.update({ 'password': encriptPass }, {
-                    where: {
-                        email: correo
-                    }
-                }
-                )
-                return true;
-
-            } catch (error) {
-                console.log(error.message)
                 throw new Error(error.message)
             }
         }
