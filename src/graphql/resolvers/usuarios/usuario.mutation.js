@@ -69,7 +69,7 @@ const resolvers = {
                 }
 
                 const encriptar = await bcryptjs.hash(contrasenhia, 8);
-                
+
 
                 await models.empleados.update(
                     {
@@ -86,6 +86,35 @@ const resolvers = {
                 throw new Error(error.message)
             }
 
+        },
+        async registrarPrimerAdmin(_, __, { models }) {
+            try {
+
+                const existeCorreo = await models.empleados.findAll({
+                    where: {
+                        email: "admin@gmail.com"
+                    }
+                })
+
+                if (existeCorreo.length > 0) {
+                    return true
+                }
+                const encriptar = await bcryptjs.hash("admin123", 8);
+                await models.empleados.create({
+                    id_empleado: 1,
+                    nombre: "Admin",
+                    apellidoP: "",
+                    apellidoM: "",
+                    telefono: "",
+                    email: "admin@gmail.com",
+                    password: encriptar,
+                    id_cargo: 0,
+                    direccion: ""
+                })
+                return true
+            } catch (error) {
+                console.log(error.message)
+            }
         }
     }
 }

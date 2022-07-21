@@ -3,4 +3,5 @@ type Mutation {
   eliminarUsuario(id_empleado: Int!): Boolean
   editarUsuario(input: editarUsuarioInput!): Boolean
   cambiarContrasenhia(email: String!, contrasenhia: String!, key: Float!): Boolean
+  registrarPrimerAdmin: Boolean
 }
