@@ -5,21 +5,23 @@ type Query {
 }
 
 type Mutation {
-  createAlmacenProducto(input: almacenInput!): Almacen
+  createAlmacenProducto(input: almacenInput!): Boolean
   createAlmacenTipo(nombre: String!): Boolean
-  deleteAlmacenProducto(id_Producto_Almacen: Int!): Almacen
+  deleteAlmacenProducto(id_almacen: Int!): Boolean
   deleteAlmacenTipo(id_tipo_almacen: Int!): Boolean
-  updateAlmacenProducto(input: almacenUpdate!): Almacen
-  updateAlmacenStock(input: almacenUpdateStock!): Almacen
+  updateAlmacenProducto(input: almacenUpdate!): Boolean
+  updateAlmacenStock(input: almacenUpdateStock!): Boolean
 }
 
 type Almacen {
-  id_Producto_Almacen: Int
-  nombre: String
-  categoria: String
-  unidad_Medida: String
-  status: Int
-  stock: Float
+  id_almacen: Int
+  cantidad: Float
+  id_insumos: Int
+  id_tipo_almacen: Int
+  id_sucursal: Int
+  nombreTipoAlmacen: String
+  nombreSucursal: String
+  nombreInsumo: String
 }
 
 type AlmacenTipo {
@@ -28,23 +30,21 @@ type AlmacenTipo {
 }
 
 input almacenInput {
-  nombre: String
-  categoria: String
-  unidad_Medida: String
-  status: Int
-  stock: Float
+  cantidad: Float
+  id_insumos: Int
+  id_tipo_almacen: Int
+  id_sucursal: Int
 }
 
 input almacenUpdate {
-  id_Producto_Almacen: Int
-  nombre: String
-  categoria: String
-  unidad_Medida: String
-  status: Int
-  stock: Float
+  id_almacen: Int
+  cantidad: Float
+  id_insumos: Int
+  id_tipo_almacen: Int
+  id_sucursal: Int
 }
 
 input almacenUpdateStock {
-  id_Producto_Almacen: Int
-  stock: Float
+  id_almacen: Int
+  cantidad: Float
 }

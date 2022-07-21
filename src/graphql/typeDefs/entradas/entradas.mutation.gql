@@ -1,0 +1,4 @@
+type Mutation{
+    createEntradas(input: EntradasInput!, inputAlmacen: EntradasAlmacenInput!): Boolean
+    upateEntradas(input: EntradasInput!, inputAlmacen: EntradasAlmacenUpdate!): Boolean
+}

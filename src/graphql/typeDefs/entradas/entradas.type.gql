@@ -1,0 +1,30 @@
+input EntradasInput{
+    fecha: String
+    id_proveedor: Int
+}
+
+input EntradasAlmacenInput{
+    id_almacen: Int
+    cantidad: Float
+    id_insumos: Int
+}
+
+input EntradasAlmacenUpdate{
+    id_entrada: Int
+    id_almacen: Int
+    cantidad: Float
+    id_insumos: Int
+}
+
+type EntradasDevolver{
+    id_entrada: Int
+    id_entradas_almacen: Int
+    descripcion: String
+    cantidad: Float
+    tipo_almacen: String
+    fecha: String
+    nombre: String
+    id_insumos: Int
+    id_proveedor: Int
+    id_almacen: Int
+}

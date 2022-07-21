@@ -55,7 +55,7 @@ async function startServer() {
 
       
         try {
-          // console.log(token)
+           //console.log(token)
           const usuario = jwt.verify(token, 'QlkshioASLKÑJDaa234#4klhjas');
           //console.log(usuario)
           return {
@@ -64,7 +64,7 @@ async function startServer() {
           };
         } catch (err) {
           console.log(err)
-          throw new Error("Token de autenticacion invalido");
+          throw new Error("Token de autenticacion invalido: ", err.message);
         }
     
     },
