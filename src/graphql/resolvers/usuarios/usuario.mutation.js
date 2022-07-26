@@ -1,7 +1,7 @@
 const bcryptjs = require("bcryptjs");
 const resolvers = {
     Mutation: {
-        async createusuario(root, { input }, { models }) {
+        async createusuario(_, { input }, { models }) {
             const { nombre, apellidoP, apellidoM, telefono, email, password, id_cargo, direccion } = input
             //console.log(nombre, apellidos, telefono, email, password, tipo)
             try {
@@ -22,7 +22,7 @@ const resolvers = {
                 throw new Error(error)
             }
         },
-        async eliminarUsuario(root, { id_empleado }, { models }) {
+        async eliminarUsuario(_, { id_empleado }, { models }) {
             try {
                 await models.empleados.destroy({
                     where: {
@@ -89,7 +89,11 @@ const resolvers = {
         },
         async registrarPrimerAdmin(_, __, { models }) {
             try {
+                await models.cargos.create({ id_cargo: 1, nombre_cargo: "Administrador" })
 
+                await models.cargos.create({ id_cargo: 2, nombre_cargo: "Vendedor" })
+
+                await models.cargos.create({ id_cargo: 3, nombre_cargo: "Repartidor" })
                 const existeCorreo = await models.empleados.findAll({
                     where: {
                         email: "admin@gmail.com"
@@ -101,7 +105,7 @@ const resolvers = {
                 }
                 const encriptar = await bcryptjs.hash("admin123", 8);
                 await models.empleados.create({
-                    id_empleado: 1,
+                    id_empleado: 0,
                     nombre: "Admin",
                     apellidoP: "",
                     apellidoM: "",
