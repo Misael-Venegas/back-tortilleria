@@ -39,7 +39,7 @@ async function startServer() {
     context: ({ req }) => {
 
       // Éstos serían alcanzables sin necesidad de que inicie sesión...
-      if (req.body.query && (req.body.query.match("login") || req.body.query.match("cambiarContrasenhia"))) {
+      if (req.body.query && (req.body.query.match("login") || req.body.query.match("cambiarContrasenhia") || req.body.query.match("registrarPrimerAdmin"))) {
         return {
           models,
         };
@@ -53,20 +53,20 @@ async function startServer() {
           ? authorizationHeader.split(" ")[1]
           : authorizationHeader;
 
-      
-        try {
-           //console.log(token)
-          const usuario = jwt.verify(token, 'QlkshioASLKÑJDaa234#4klhjas');
-       
-          return {
-            models,
-            usuario,
-          };
-        } catch (err) {
-          console.log(err)
-          throw new Error("Token de autenticacion invalido: ", err.message);
-        }
-    
+
+      try {
+        // console.log(token)
+        const usuario = jwt.verify(token, 'QlkshioASLKÑJDaa234#4klhjas');
+
+        return {
+          models,
+          usuario,
+        };
+      } catch (err) {
+        console.log(err)
+        throw new Error("Token de autenticacion invalido");
+      }
+
     },
   })
 
