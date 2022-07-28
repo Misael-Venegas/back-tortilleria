@@ -1,6 +1,6 @@
 const resolvers = {
     Mutation: {
-        async agregarVenta(_, { input }, { models, usuario }) {
+        async agregarVenta(_, { input, id_epleado }, { models, usuario }) {
             const { productos } = input;
             console.log(productos)
 
@@ -10,10 +10,9 @@ const resolvers = {
                     const venta = await models.ventas.create({
                         fecha_venta: fecha.getFullYear() + "-" + ("0" + (fecha.getMonth() + 1)).slice(-2) + "-" + ("0" + fecha.getDate()).slice(-2),
                         id_sucursal: element.id_sucursal,
-                        id_empleado: usuario.id_empleado
+                        id_empleado: id_epleado === "" ? usuario.id_empleado : parseInt(id_epleado)
                     })
 
-                    console.log(venta)
                     await models.ventas_productos.create({
                         id_ventas: venta.id_ventas,
                         id_producto: element.id_producto,

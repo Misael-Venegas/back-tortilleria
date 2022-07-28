@@ -1,3 +1,3 @@
 type Mutation {
- agregarVenta(input: ventasInput! ): Boolean
+ agregarVenta(input: ventasInput!, id_epleado: String! ): Boolean
 }
