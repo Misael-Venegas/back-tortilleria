@@ -7,7 +7,7 @@ const resolvers = {
         INNER JOIN insumos i on i.id_insumos=a.id_insumos
         INNER JOIN sucursals s ON s.id_sucursal=a.id_sucursal`);
       return results;
-      //return await models.almacen.findAll();
+      //return await models.almacen.findAll();fff
     },
     async getAlmacenTipo(root, args, { models }) {
       return await models.tipoalmacen.findAll();
