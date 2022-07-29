@@ -14,7 +14,7 @@ const resolvers = {
                 GROUP by e.id_empleado
             `);
 
-            console.log(results)
+            //console.log(results)
 
             for (let index = 0; index < results.length; index++) {
                 nombres.push(results[index].nombre.toString());

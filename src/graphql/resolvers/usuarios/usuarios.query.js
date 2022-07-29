@@ -26,21 +26,23 @@ const resolvers = {
 
                 if (consulta.length == 0) {
                     throw new Error("El correo electronico no se encuentra registrado")
-                } else {
-
-                    const validarContrasenhia = await bcryptjs.compare(contrasenia, consulta[0].password);
-
-                    if (!validarContrasenhia) {
-                        throw new Error("La contrasenhia es incorrecta")
-                    }
-
-                    console.log("----------------------ERICK------------------")
-                    console.log(consulta)
-
-                    return {
-                        token: crearToken(consulta[0])
-                    }
                 }
+                if (consulta[0].id_cargo !== 1 && consulta[0].id_cargo !== 0 && consulta[0].id_cargo !== 2) {
+                    throw new Error("No tienes pemisos para ingrear al sistema")
+                }
+                const validarContrasenhia = await bcryptjs.compare(contrasenia, consulta[0].password);
+
+                if (!validarContrasenhia) {
+                    throw new Error("La contrasenhia es incorrecta")
+                }
+
+                // console.log("----------------------ERICK------------------")
+                // console.log(consulta)
+
+                return {
+                    token: crearToken(consulta[0])
+                }
+
             } catch (error) {
                 console.log(error)
                 throw new Error(error.message)
