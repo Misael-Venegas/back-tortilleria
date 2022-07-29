@@ -34,6 +34,9 @@ const resolvers = {
                         throw new Error("La contrasenhia es incorrecta")
                     }
 
+                    console.log("----------------------ERICK------------------")
+                    console.log(consulta)
+
                     return {
                         token: crearToken(consulta[0])
                     }

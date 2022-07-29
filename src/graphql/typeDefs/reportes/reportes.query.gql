@@ -1,0 +1,9 @@
+
+type Query {
+    generarReporte(desde: String, hasta: String) : Reporte
+}
+
+type Reporte {
+    nombres: [String]
+    ventas: [Int]
+}
