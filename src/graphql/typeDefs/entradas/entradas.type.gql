@@ -9,8 +9,8 @@ input crearEntrada {
 type obtenerEntradas {
     id_entrada: Int
     cantidad: Int
-    id_tipo_almacen: Int
-    id_proveedor: Int
     fechaRegistro: String
-    id_almacen: Int
+    nombreProducto:String
+    noProveedor: String
+    noTipoAlmacen: String
 }
