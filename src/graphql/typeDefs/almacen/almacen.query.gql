@@ -1,0 +1,4 @@
+type Query {
+  getAlmacen(key: Float!): [almacen]
+   getAlmacenTipo: [AlmacenTipo]
+}

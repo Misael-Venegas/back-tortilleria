@@ -1,20 +1,20 @@
 module.exports = (sequelize, DataTypes) => {
-  const Entradas = sequelize.define(
-    "Entradas",
-    {
-      id_entrada: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-      },
-      Fecha: {
-        type: DataTypes.STRING,
-      },
-      id_proveedor: {
-        type: DataTypes.INTEGER,
-      },
-    },
-    {}
-  );
-  return Entradas;
-};
+    const Entrada = sequelize.define('Entrada', {
+        id_entrada: {
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        }, cantidad: {
+            type: DataTypes.INTEGER
+        }, id_tipo_almacen: {
+            type: DataTypes.INTEGER
+        }, id_proveedor: {
+            type: DataTypes.INTEGER
+        }, fechaRegistro: {
+            type: DataTypes.STRING
+        }, id_almacen: {
+            type: DataTypes.STRING
+        }
+    }, {});
+    return Entrada
+}

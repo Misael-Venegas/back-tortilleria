@@ -11,10 +11,7 @@ const models = {
     almacen: sequelize.import('./almacen'),
     ventas: sequelize.import('./ventas'),
     productos: sequelize.import('./productos'),
-    gastosoperacion: sequelize.import('./gastosoperacion'),
     mermas: sequelize.import('./mermas'),
-    entradas: sequelize.import('./entradas'),
-    entradasalmacen: sequelize.import('./entradasalmacen'),
     insumos: sequelize.import('./insumos'),
     salidas: sequelize.import('./salidas'),
     salidasalmacen: sequelize.import('./salidasalmacen'),
@@ -24,7 +21,8 @@ const models = {
     sucursal: sequelize.import('./sucursal'),
     cortes: sequelize.import('./cortes'),
     tipo_merma: sequelize.import('./tipo_merma'),
-    proveedor: sequelize.import('./proveedor')
+    proveedor: sequelize.import('./proveedor'),
+    entrada: sequelize.import('./entradas')
 }
 
 models.sequelize = sequelize;

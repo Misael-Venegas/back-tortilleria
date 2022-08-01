@@ -1,0 +1,10 @@
+type almacen {
+    id_almacen: Int
+    cantidadTotal: Int
+    nombreProducto: String
+    unidad_de_medida: String
+}
+type AlmacenTipo {
+  id_tipo_almacen: Int
+  nombre: String
+}

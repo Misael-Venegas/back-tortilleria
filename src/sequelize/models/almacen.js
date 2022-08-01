@@ -4,14 +4,12 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
-        }, cantidad: {
+        }, cantidadTotal: {
             type: DataTypes.INTEGER
-        }, id_insumos: {
-            type: DataTypes.INTEGER
-        }, id_tipo_almacen: {
-            type: DataTypes.INTEGER
-        }, id_sucursal: {
-            type: DataTypes.INTEGER
+        }, nombreProducto: {
+            type: DataTypes.STRING
+        }, unidad_de_medida: {
+            type: DataTypes.STRING
         }
     }, {});
     return Almacen

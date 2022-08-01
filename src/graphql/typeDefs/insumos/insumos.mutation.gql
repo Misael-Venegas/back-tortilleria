@@ -1,5 +1,0 @@
-type Mutation {
-    createInsumo(input: insumosInput!): Boolean
-    updateInsumo(input: insumosUpdate!): Boolean
-    deleteInsumo(id_insumos: Int!): Boolean
-}
