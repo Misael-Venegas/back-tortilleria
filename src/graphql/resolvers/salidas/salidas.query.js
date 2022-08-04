@@ -1,22 +1,21 @@
 const resolvers = {
     Query: {
-      async getSalidas(_, {fecha}, { models }) {
-        try {
-          const [results, metadata] = await models.sequelize.query(`
-            SELECT s.id_salida, s.Fecha, s.descripcion,
-            sa.id_salidas_almacen, sa.id_almacen, sa.cantidad, a.nombreProducto nombre
-            FROM salidas s 
-            INNER JOIN salidasalmacens sa ON s.id_salida = sa.id_salidas_almacen
-            INNER JOIN almacens a ON sa.id_almacen= a.id_almacen
-            where s.Fecha = '${fecha}'     `
-          );
-          return results
-        } catch (error) {
-          throw new Error(error.message);
+        async getAllSalidas(_, { fecha }, { models }) {
+            try {
+                const [results, metadata] = await models.sequelize.query(`SELECT s.cantidad, s.Fecha, 
+                            al.nombreProducto, al.unidad_de_medida, 
+                            su.nombre noSucursal FROM salidas s 
+                            INNER JOIN almacens al on s.id_almacen=al.id_almacen 
+                            INNER JOIN sucursals su on su.id_sucursal = s.id_sucursal
+                            where s.Fecha = '${fecha}'  
+                `
+                );
+                return results
+            } catch (error) {
+                throw new Error(error.message)
+            }
         }
-      },
-    },
-  };
-  
-  module.exports = resolvers;
-  
+    }
+}
+
+module.exports = resolvers
