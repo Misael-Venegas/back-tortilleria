@@ -10,8 +10,13 @@ module.exports = (sequelize, DataTypes) => {
       Fecha: {
         type: DataTypes.STRING,
       },
-      descripcion: {
-        type: DataTypes.STRING,
+      id_almacen: {
+        type: DataTypes.INTEGER,
+      },
+      cantidad: {
+        type: DataTypes.INTEGER,
+      }, id_sucursal: {
+        type: DataTypes.INTEGER,
       },
     },
     {}

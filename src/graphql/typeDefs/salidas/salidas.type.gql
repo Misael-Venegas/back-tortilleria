@@ -1,20 +1,15 @@
-input salidasInput{
-    Fecha: String
-    descripcion: String
+input salidaInput {
+   Fecha: String
+   id_almacen: Int
+   cantidad: Int
+   id_sucursal: Int
 }
 
-input salidasAlmacenInput{
-    id_almacen: Int
-    cantidad: Float
-    id_salida: Int
-}
-
-type salidas{
-    id_salida: Int
-    Fecha: String
-    descripcion: String
-    id_salidas_almacen: Int
-    id_almacen: Int
-    cantidad: Float
-    nombre: String
+type salidasInfo {
+   id_salida: Int
+   cantidad: Int
+   Fecha: String
+   nombreProducto: String
+   unidad_de_medida: String
+   noSucursal: String
 }
