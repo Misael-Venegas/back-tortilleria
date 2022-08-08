@@ -3,4 +3,5 @@ type Mutation {
    deleteAlmacenProducto(id_producto: Int!): Boolean
    createAlmacenTipo(nombre: String!): Boolean
    deleteAlmacenTipo(id_tipo_almacen: Int!): Boolean
+   editaarTipoAlmacen( idTipoAlmacen: Int!, nombre: String!): Boolean
 }

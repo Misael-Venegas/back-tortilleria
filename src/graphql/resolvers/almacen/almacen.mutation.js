@@ -40,6 +40,22 @@ const resolvers = {
                 throw new Error(error.message);
             }
         },
+        async editaarTipoAlmacen(_, { idTipoAlmacen, nombre }, { models }) {
+            try {
+                await models.tipoalmacen.update({
+                    nombre
+                }, {
+                    where: {
+                        id_tipo_almacen: idTipoAlmacen
+                    }
+                })
+
+                return true
+
+            } catch (error) {
+                throw new Error(error.message);
+            }
+        }
     }
 
 };
