@@ -2,7 +2,7 @@
 const resolvers = {
     Query: {
         async generarReporte(_, { desde, hasta }, { models }) {
-
+            let suma = 0
             const nombres = [];
             const ventas = [];
             const ventasRealizadas = [];
@@ -14,20 +14,20 @@ const resolvers = {
                 GROUP by e.id_empleado; 
             `);
 
-            console.log(results)
 
             for (let index = 0; index < results.length; index++) {
                 nombres.push(results[index].nombre.toString());
                 ventas.push(results[index].ventas);
-                ventasRealizadas.push(results[index].ventasRealizadas)
-                console.log(results[index].nombre)
-            }
+                ventasRealizadas.push(results[index].ventasRealizadas);
 
+                suma += parseFloat(results[index].ventas)
+            }
 
             return {
                 nombres,
                 ventas,
-                ventasRealizadas
+                ventasRealizadas,
+                totalVentas: suma
             }
         },
 

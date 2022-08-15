@@ -1,4 +1,4 @@
 type Query {
- generarCorteDeCaja( fechaCorte: String!, id_sucursal: String! ): [Ventas]
+ generarCorteDeCaja( fechaCorte: String!, id_sucursal: String!, horaInicio: String!, horaFin: String! ): [Ventas]
  #generarCorteDeCaja( fechaCorte: String! ): Boolean
 }

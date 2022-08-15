@@ -4,19 +4,21 @@ const resolvers = {
     Mutation: {
         async createusuario(_, { input }, { models }) {
             const { nombre, apellidoP, apellidoM, telefono, email, password, id_cargo, direccion } = input
-            //console.log(nombre, apellidos, telefono, email, password, tipo)
+            let encriptar = ""
             try {
-                const existeCorreo = await models.empleados.findAll({
-                    where: {
-                        email
-                    }
-                })
+                if (id_cargo !== 3) {
+                    const existeCorreo = await models.empleados.findAll({
+                        where: {
+                            email
+                        }
+                    })
 
-                if (existeCorreo.length > 0) {
-                    throw new Error("El correo electronico ya esta vinculado a otra cuenta");
+                    if (existeCorreo.length > 0) {
+                        throw new Error("El correo electronico ya esta vinculado a otra cuenta");
+                    }
+                    encriptar = await bcryptjs.hash(password, 8);
                 }
-                const encriptar = await bcryptjs.hash(password, 8);
-                await models.empleados.create({ nombre, apellidoP, apellidoM, telefono, email, password: encriptar, id_cargo, direccion })
+                await models.empleados.create({ nombre, apellidoP, apellidoM, telefono, email: id_cargo !== 3 ? email : "", password: id_cargo !== 3 ? encriptar : "", id_cargo, direccion })
                 return true
             } catch (error) {
                 console.log(error)
@@ -38,12 +40,24 @@ const resolvers = {
         async editarUsuario(_, { input }, { models }) {
             const { id_empleado, nombre, apellidoP, apellidoM, telefono, email, id_cargo, direccion } = input
             try {
+
+                if (id_cargo !== 3) {
+
+                    const [results, metadata] = await models.sequelize.query(` SELECT * FROM  empleados WHERE email = '${email}' AND id_empleado != ${id_empleado} `)
+
+                    console.log(results)
+                    if (results.length > 0) {
+                        throw new Error("El correo electronico ya esta vinculado a otra cuenta");
+                    }
+
+                }
+
                 await models.empleados.update({
                     nombre,
                     apellidoP,
                     apellidoM,
                     telefono,
-                    email,
+                    email: id_cargo !== 3 ? email : "",
                     id_cargo,
                     direccion
                 }, {
@@ -53,7 +67,7 @@ const resolvers = {
                 })
                 return true
             } catch (error) {
-                throw new Error("Error al intentar editar los campos del usuario " + nombre)
+                throw new Error(error.message)
             }
 
         },

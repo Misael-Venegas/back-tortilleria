@@ -10,7 +10,8 @@ const resolvers = {
                     const venta = await models.ventas.create({
                         fecha_venta: fecha.getFullYear() + "-" + ("0" + (fecha.getMonth() + 1)).slice(-2) + "-" + ("0" + fecha.getDate()).slice(-2),
                         id_sucursal: element.id_sucursal,
-                        id_empleado: id_epleado === "" ? usuario.id_empleado : parseInt(id_epleado)
+                        id_empleado: id_epleado === "" ? usuario.id_empleado : parseInt(id_epleado),
+                        hora_venta: fecha.getHours() + ":" + fecha.getMinutes()
                     })
 
                     await models.ventas_productos.create({

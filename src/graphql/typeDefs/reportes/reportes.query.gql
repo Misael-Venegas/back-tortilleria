@@ -7,4 +7,5 @@ type Reporte {
     nombres: [String]
     ventas: [Float]
     ventasRealizadas: [Int]
+    totalVentas: Float
 }

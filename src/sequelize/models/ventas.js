@@ -9,11 +9,14 @@ module.exports = (sequelize, DataTypes) => {
             fecha_venta: {
                 type: DataTypes.STRING
             },
+            hora_venta: {
+                type: DataTypes.STRING
+            },
             id_sucursal: {
                 type: DataTypes.INTEGER
             },
             id_empleado: {
-                type: DataTypes.INTEGER 
+                type: DataTypes.INTEGER
             }
         }, {}
     );

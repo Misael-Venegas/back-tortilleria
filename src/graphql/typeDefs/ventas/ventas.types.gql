@@ -17,4 +17,5 @@ type Ventas {
   nombre_producto: String 
   nombre_sucursal: String
   empleado: String
+  hora_venta: String
 }
