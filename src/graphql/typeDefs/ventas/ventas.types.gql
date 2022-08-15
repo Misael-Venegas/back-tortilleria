@@ -7,12 +7,12 @@ input arrayVentas {
   id_sucursal: Int
   id_producto: Int
   precio: Float
-  cantidad: Int
+  cantidad: Float
 }
 
 type Ventas {
   id_ventas_productos: Int
-  cantidad: Int
+  cantidad: Float
   total: Float
   nombre_producto: String 
   nombre_sucursal: String

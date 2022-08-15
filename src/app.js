@@ -39,7 +39,7 @@ async function startServer() {
     context: ({ req }) => {
 
       // Éstos serían alcanzables sin necesidad de que inicie sesión...
-      if (req.body.query && (req.body.query.match("login") || req.body.query.match("cambiarContrasenhia") || req.body.query.match("registrarPrimerAdmin"))) {
+      if (req.body.query && (req.body.query.match("login") || req.body.query.match("generarContrasenhiaTemporal") || req.body.query.match("registrarPrimerAdmin"))) {
         return {
           models,
         };

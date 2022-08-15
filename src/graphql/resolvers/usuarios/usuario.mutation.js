@@ -1,4 +1,5 @@
 const bcryptjs = require("bcryptjs");
+const { generarContraseña } = require('../../../helpers/correoElectronico')
 const resolvers = {
     Mutation: {
         async createusuario(_, { input }, { models }) {
@@ -56,18 +57,8 @@ const resolvers = {
             }
 
         },
-        async cambiarContrasenhia(_, { email, contrasenhia }, { models }) {
+        async cambiarContrasenhia(_, { contrasenhia }, { models, usuario }) {
             try {
-                const obtenerCorreo = await models.empleados.findAll({
-                    where: {
-                        email
-                    }
-                })
-
-                if (obtenerCorreo.length <= 0) {
-                    throw new Error("El correo electrónico no se encuentra registrado")
-                }
-
                 const encriptar = await bcryptjs.hash(contrasenhia, 8);
 
 
@@ -76,7 +67,7 @@ const resolvers = {
                         password: encriptar
                     }, {
                     where: {
-                        id_empleado: obtenerCorreo[0].id_empleado
+                        id_empleado: usuario.id_empleado
                     }
                 }
                 )
@@ -118,6 +109,38 @@ const resolvers = {
                 return true
             } catch (error) {
                 console.log(error.message)
+            }
+        },
+        async generarContrasenhiaTemporal(_, { correo }, { models }) {
+            try {
+                console.log(correo)
+                const obtenerCorreo = await models.empleados.findAll({
+                    where: {
+                        email: correo
+                    }
+                })
+                // console.log(obtenerCorreo)
+                if (obtenerCorreo.length <= 0) {
+                    throw new Error("El correo electrónico no se encuentra registrado")
+                }
+                const password = Math.random().toString(36).slice(-8);
+                const encriptar = await bcryptjs.hash(password, 8);
+                await generarContraseña(correo, password, obtenerCorreo[0].nombre + " " + obtenerCorreo[0].apellidoP + " " + obtenerCorreo[0].apellidoM);
+
+                await models.empleados.update(
+                    {
+                        password: encriptar
+                    }, {
+                    where: {
+                        id_empleado: obtenerCorreo[0].id_empleado
+                    }
+                }
+                )
+
+                return true
+            } catch (error) {
+
+                throw new Error(error.message)
             }
         }
     }

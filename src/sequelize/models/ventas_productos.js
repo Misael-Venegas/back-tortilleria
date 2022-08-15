@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         total: {
             type: DataTypes.FLOAT
         }, cantidad: {
-            type: DataTypes.INTEGER
+            type: DataTypes.FLOAT
         }
     }, {});
     return Venta_productos
