@@ -1,5 +1,5 @@
 type Query {
-  getMermas: [Merma]
+  getMermas(fecha: String!, id_sucursal: String!): [Merma]
   getTipoMermas: [MermaTipo]
   getMerma(id: Int!): Merma
 }
@@ -19,6 +19,7 @@ type Merma {
   id_sucursal: Int
   tipo_merma: String
   sucursal: String
+  fecha_registro: String
 }
 
 type MermaTipo{

@@ -10,14 +10,14 @@ module.exports = (sequelize, DataTypes) => {
       cantidad: {
         type: DataTypes.FLOAT
       },
-      id_cortes: {
-        type: DataTypes.INTEGER
-      },
       id_tipo_merma: {
         type: DataTypes.INTEGER
       },
       id_sucursal: {
         type: DataTypes.INTEGER
+      },
+      fecha_registro: {
+        type: DataTypes.STRING
       }
 
     },
