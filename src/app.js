@@ -63,7 +63,6 @@ async function startServer() {
           usuario,
         };
       } catch (err) {
-        console.log(err)
         throw new Error("Token de autenticacion invalido");
       }
 
