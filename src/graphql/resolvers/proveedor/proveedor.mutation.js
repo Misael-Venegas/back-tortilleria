@@ -3,6 +3,14 @@ const resolvers = {
     async createProveedor(root, { input }, { models }) {
       const { nombre, correo, telefono } = input;
       try {
+        const existeProveedor = await models.proveedor.findAll({
+          where: {
+            nombre
+          }
+        })
+        if (existeProveedor.length > 0) {
+          throw new Error("el nombre del proveedor ya existe")
+        }
         await models.proveedor.create({ nombre, correo, telefono });
         return true;
       } catch (error) {
@@ -21,14 +29,14 @@ const resolvers = {
         throw new Error(error.message);
       }
     },
-    async updateProveedor(_,{input},{models}){
+    async updateProveedor(_, { input }, { models }) {
       try {
-        const {id_proveedor,nombre, correo, telefono }=input;
+        const { id_proveedor, nombre, correo, telefono } = input;
         await models.proveedor.update({
-            nombre,
-            correo,
-            telefono,
-          },{
+          nombre,
+          correo,
+          telefono,
+        }, {
           where: {
             id_proveedor,
           },

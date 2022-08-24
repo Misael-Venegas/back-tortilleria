@@ -2,6 +2,17 @@ const resolvers = {
     Mutation: {
         async createAlmacenProducto(_, { producto, unidadMedida }, { models }) {
             try {
+
+                const existeNomreProducto = await models.almacen.findAll({
+                    where: {
+                        nombreProducto: producto
+                    }
+                })
+
+                if (existeNomreProducto.length > 0) {
+                    throw new Error("El nombre del producto ya existe")
+                }
+                
                 await models.almacen.create({
                     cantidadTotal: 0,
                     nombreProducto: producto,
