@@ -68,8 +68,23 @@ const resolvers = {
 
     },
     async createMermaTipo(root, { tipo }, { models }) {
-      await models.tipo_merma.create({ tipo })
-      return true;
+      try {
+        const existeMerma = await models.tipo_merma.findAll({
+          where: {
+            tipo
+          }
+        })
+
+        if (existeMerma.length > 0) {
+          throw new Error("El nombre ya existe")
+        }
+
+        await models.tipo_merma.create({ tipo })
+        return true;
+
+      } catch (error) {
+        throw new Error(error.message)
+      }
     },
     async deleteMerma(root, args, { models }) {
       await models.mermas.destroy({

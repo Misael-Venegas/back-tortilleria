@@ -32,6 +32,12 @@ const resolvers = {
     async updateProveedor(_, { input }, { models }) {
       try {
         const { id_proveedor, nombre, correo, telefono } = input;
+
+        const [results, metadata] = await models.sequelize.query(` SELECT * FROM  proveedors WHERE nombre = '${nombre}' AND id_proveedor != ${id_proveedor} `)
+        if (results.length > 0) {
+          throw new Error("El nombre de del proveedor ya existe");
+        }
+
         await models.proveedor.update({
           nombre,
           correo,
@@ -43,7 +49,8 @@ const resolvers = {
         });
         return true;
       } catch (error) {
-        throw new Error("Error al intentar actualizar los datos del proveedor");
+        console.log(error.message)
+        throw new Error(error.message);
       }
     }
   },

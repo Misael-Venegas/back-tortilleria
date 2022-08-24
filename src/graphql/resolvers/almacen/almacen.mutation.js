@@ -12,7 +12,7 @@ const resolvers = {
                 if (existeNomreProducto.length > 0) {
                     throw new Error("El nombre del producto ya existe")
                 }
-                
+
                 await models.almacen.create({
                     cantidadTotal: 0,
                     nombreProducto: producto,
@@ -37,8 +37,20 @@ const resolvers = {
                 throw new Error(error.message)
             }
         }, async createAlmacenTipo(_, { nombre }, { models }) {
-            await models.tipoalmacen.create({ nombre });
-            return true;
+            try {
+                const existeAlmacenTipo = await models.tipoalmacen.findAll({
+                    where: {
+                        nombre
+                    }
+                })
+                if (existeAlmacenTipo.length > 0) {
+                    throw new Error("El nombre ya existe")
+                }
+                await models.tipoalmacen.create({ nombre });
+                return true;
+            } catch (error) {
+                throw new Error(error.message)
+            }
         }, async deleteAlmacenTipo(_, { id_tipo_almacen }, { models }) {
             try {
                 await models.tipoalmacen.destroy({
@@ -53,6 +65,11 @@ const resolvers = {
         },
         async editaarTipoAlmacen(_, { idTipoAlmacen, nombre }, { models }) {
             try {
+                const [results, metadata] = await models.sequelize.query(` SELECT * FROM  tipoalmacens WHERE nombre = '${nombre}' AND id_tipo_almacen != ${idTipoAlmacen} `)
+                if (results.length > 0) {
+                    throw new Error("El nombre ya existe");
+                }
+
                 await models.tipoalmacen.update({
                     nombre
                 }, {
