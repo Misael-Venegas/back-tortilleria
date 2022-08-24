@@ -45,7 +45,6 @@ const resolvers = {
 
                     const [results, metadata] = await models.sequelize.query(` SELECT * FROM  empleados WHERE email = '${email}' AND id_empleado != ${id_empleado} `)
 
-                    console.log(results)
                     if (results.length > 0) {
                         throw new Error("El correo electronico ya esta vinculado a otra cuenta");
                     }
